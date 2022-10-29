@@ -11,7 +11,8 @@ root.render(
   <React.StrictMode>
     {/* <Count/> */}
     {/* <Modal/> */}
-    <Quiz/>
+    {/* <Quiz/> */}
+    <App/>
   </React.StrictMode>
 );
 reportWebVitals();

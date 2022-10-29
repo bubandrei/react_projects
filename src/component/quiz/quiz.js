@@ -23,18 +23,22 @@ const questions = [
     },
 ];
 
-const Result = () => {
+const Result = ({correct}) => {
     return (
         <div className="result">
             <img src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png" />
-            <h2>Вы отгадали 3 ответа из 10</h2>
+            <h2>Вы отгадали {correct} ответа из {questions.length}</h2>
+            <a href="/">
             <button>Попробовать снова</button>
+            </a>
+            
         </div>
     );
 }
 
-const Game = ({ question, onClickVariants }) => {
-
+const Game = ({ question, onClickVariants, step }) => {
+    const persentage = Math.round((step / questions.length) * 100);
+    console.log(step)
     const note = question.variants.map((item, index) => {
         return <li key={index} onClick={() => { onClickVariants(index) }}>{item}</li>
     })
@@ -43,7 +47,7 @@ const Game = ({ question, onClickVariants }) => {
         <>
             {/* <div>{question}</div> */}
             <div className="progress">
-                <div style={{ width: '50%' }} className="progress__inner"></div>
+                <div style={{ width: `${persentage}%` }} className="progress__inner"></div>
             </div>
             <h1>{question.title}</h1>
             <ul>
@@ -54,15 +58,21 @@ const Game = ({ question, onClickVariants }) => {
 }
 
 const Quiz = () => {
-    const [step, setStep] = useState(2);
+    const [step, setStep] = useState(0);
+    const [correct, setCorrect] = useState(0);
+
     const question = questions[step];
+
     const onClickVariants = (index) => {
-        console.log(index)
+        if (index == question.correct) {
+            setCorrect(correct+1)
+        }
+        setStep(step + 1)
     }
     return (
         <div className="App">
-            <Game question={question} onClickVariants={onClickVariants} />
-            {/* <Result /> */}
+            {step != questions.length ? <Game question={question} onClickVariants={onClickVariants} step={step}/> : <Result correct={correct}/>}
+
         </div>
     );
 }

@@ -3,7 +3,7 @@ import { Skeleton } from "./Skeleton";
 import { User } from "./User";
 
 export const Users = ({ items, isLoading, value, handleChange }) => {
-    console.log(value)
+
   return (
     <>
       <div className="search">
@@ -25,7 +25,13 @@ export const Users = ({ items, isLoading, value, handleChange }) => {
         </div>
       ) : (
         <ul className="users-list">
-          {items.map((item) => {
+          {items.filter((item)=>{
+            const fullName = (item.first_name + item.last_name).toLowerCase();
+            return (
+                fullName.includes(value.toLowerCase()) || item.email.includes(value.toLowerCase())
+            ) 
+          })
+          .map((item) => {
             return <User key={item.id} {...item} />;
           })}
         </ul>

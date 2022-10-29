@@ -7,7 +7,8 @@ import { Users } from './components/Users';
 const url = ' https://reqres.in/api/users'
 const App = () => {
   const [users, setUsers] = useState([]);
-  const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(true);
+  const [value, setValue]=useState('');
   useEffect(() => {
     try {
       fetch(url).then((res) => res.json()).then((json) => setUsers(json.data))
@@ -17,9 +18,17 @@ const App = () => {
       setLoading(false)
     }
   }, [])
+  const handleChange=(e)=>{
+    setValue(e.target.value)
+  }
   return (
     <div className="App">
-      <Users items={users} isLoading={isLoading} />
+      <Users 
+      items={users}
+      isLoading={isLoading}
+      handleChange = {handleChange}
+      value={value}
+      />
       {/* <Success /> */}
     </div>
   );

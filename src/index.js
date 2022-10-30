@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import Count from './component/count/count';
 import Modal from './component/modal/modal';
 import Quiz from './component/quiz/quiz';
+import Currency from './component/currency/currency';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +13,8 @@ root.render(
     {/* <Count/> */}
     {/* <Modal/> */}
     {/* <Quiz/> */}
-    <App/>
+    {/* <App/> */}
+    <Currency/>
   </React.StrictMode>
 );
 reportWebVitals();

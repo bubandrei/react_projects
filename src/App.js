@@ -47,6 +47,7 @@ const App = () => {
           invites={invites}
           onClickInvite={onClickInvite}
           successInvite={successInvite}
+          count={invites.length}
         />
       }
     </div>

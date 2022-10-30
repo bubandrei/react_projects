@@ -2,7 +2,16 @@ import React from "react";
 import { Skeleton } from "./Skeleton";
 import { User } from "./User";
 
-export const Users = ({ items, isLoading, value, handleChange, invites, onClickInvite, successInvite }) => {
+export const Users = ({
+  items,
+  isLoading,
+  value,
+  handleChange,
+  invites,
+  onClickInvite,
+  successInvite,
+  count
+}) => {
   return (
     <>
       <div className="search">
@@ -24,22 +33,33 @@ export const Users = ({ items, isLoading, value, handleChange, invites, onClickI
         </div>
       ) : (
         <ul className="users-list">
-          {items.filter((item)=>{
-            const fullName = (item.first_name + item.last_name).toLowerCase();
-            return (
-                fullName.includes(value.toLowerCase()) || item.email.includes(value.toLowerCase())
-            ) 
-          })
-          .map((item) => {
-            return <User
-            onClickInvite={onClickInvite} 
-            isInvited={invites.includes(item.id)} 
-            id={item.id} 
-            {...item} />;
-          })}
+          {items
+            .filter((item) => {
+              const fullName = (item.first_name + item.last_name).toLowerCase();
+              return (
+                fullName.includes(value.toLowerCase()) ||
+                item.email.includes(value.toLowerCase())
+              );
+            })
+            .map((item) => {
+              return (
+                <User
+                  onClickInvite={onClickInvite}
+                  isInvited={invites.includes(item.id)}
+                  id={item.id}
+                  {...item}
+                />
+              );
+            })}
         </ul>
       )}
-      <button onClick={()=>successInvite()} className="send-invite-btn">Отправить приглашение</button>
+      {count ? (
+        <button onClick={() => successInvite()} className="send-invite-btn">
+          Отправить приглашение
+        </button>
+      ) : (
+        ""
+      )}
     </>
   );
 };

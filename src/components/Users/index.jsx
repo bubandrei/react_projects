@@ -2,8 +2,7 @@ import React from "react";
 import { Skeleton } from "./Skeleton";
 import { User } from "./User";
 
-export const Users = ({ items, isLoading, value, handleChange }) => {
-console.log(items)
+export const Users = ({ items, isLoading, value, handleChange, invites, onClickInvite }) => {
   return (
     <>
       <div className="search">
@@ -32,7 +31,7 @@ console.log(items)
             ) 
           })
           .map((item) => {
-            return <User key={item.id} {...item} />;
+            return <User isInvited key={item.id} {...item} />;
           })}
         </ul>
       )}

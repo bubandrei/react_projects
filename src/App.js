@@ -9,6 +9,7 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [invites, setInvites] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [success, setSuccess] = useState(false);
   const [value, setValue] = useState('');
   useEffect(() => {
     try {
@@ -32,18 +33,22 @@ const App = () => {
       setInvites([...invites, id])
     }
   }
-
+  const successInvite = () => {
+    setSuccess(!success)
+  }
   return (
     <div className="App">
-      <Users
-        items={users}
-        isLoading={isLoading}
-        handleChange={handleChange}
-        value={value}
-        invites={invites}
-        onClickInvite={onClickInvite}
-      />
-      {/* <Success /> */}
+      {success ? <Success successInvite={successInvite} count={invites.length} /> :
+        <Users
+          items={users}
+          isLoading={isLoading}
+          handleChange={handleChange}
+          value={value}
+          invites={invites}
+          onClickInvite={onClickInvite}
+          successInvite={successInvite}
+        />
+      }
     </div>
   );
 }

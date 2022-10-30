@@ -14,7 +14,7 @@ root.render(
     {/* <Modal/> */}
     {/* <Quiz/> */}
     {/* <App/> */}
-    <Currency/>
+    {/* <Currency/> */}
   </React.StrictMode>
 );
 reportWebVitals();

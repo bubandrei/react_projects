@@ -24,7 +24,7 @@ const App = () => {
   }
   const onClickInvite = (id) => {
     if (invites.includes(id)) {
-      setInvites(prev => prev.filter((_id) => {
+      setInvites(invites => invites.filter((_id) => {
         return _id != id
       })
       )

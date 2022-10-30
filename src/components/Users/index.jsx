@@ -31,7 +31,11 @@ export const Users = ({ items, isLoading, value, handleChange, invites, onClickI
             ) 
           })
           .map((item) => {
-            return <User isInvited key={item.id} {...item} />;
+            return <User
+            onClickInvite={onClickInvite} 
+            isInvited={invites.includes(item.id)} 
+            id={item.id} 
+            {...item} />;
           })}
         </ul>
       )}
